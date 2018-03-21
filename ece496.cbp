@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="ece496" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/ece496" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/ece496" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="base_channel.cpp" />
+		<Unit filename="base_channel.h" />
+		<Unit filename="channel.cpp" />
+		<Unit filename="channel.h" />
+		<Unit filename="ece496.cbp" />
+		<Unit filename="ece496.depend" />
+		<Unit filename="main.cpp" />
+		<Unit filename="main.h" />
+		<Unit filename="path.cpp" />
+		<Unit filename="path.h" />
+		<Unit filename="phasor.cpp" />
+		<Unit filename="phasor.h" />
+		<Unit filename="subpath.cpp" />
+		<Unit filename="subpath.h" />
+		<Unit filename="suburban_macro.cpp" />
+		<Unit filename="suburban_macro.h" />
+		<Unit filename="urban_macro.cpp" />
+		<Unit filename="urban_macro.h" />
+		<Unit filename="urban_micro.cpp" />
+		<Unit filename="urban_micro.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
