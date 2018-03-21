@@ -20,6 +20,7 @@ public:
 
     //use this constructor
     urban_micro(double distance, double theta_MS_in, double theta_BS_in);
+    urban_micro(const urban_micro& a);
 
     ~urban_micro();
 

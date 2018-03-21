@@ -34,6 +34,7 @@ public:
 
 
     subpath();
+    subpath(int pdd);
     subpath(const subpath& a);
     ~subpath();
 
@@ -43,11 +44,11 @@ public:
     double get_theta_AoD();
     double get_phi();
 
-    bool set_d_AoA(double value);
-    bool set_d_AoD(double value);
-    bool set_theta_AoA(double value);
-    bool set_theta_AoD(double value);
-    bool set_phi(double value);
+    void set_d_AoA(double value);
+    void set_d_AoD(double value);
+    void set_theta_AoA(double value);
+    void set_theta_AoD(double value);
+    void set_phi(double value);
 
     void operator =(const subpath& a);
 

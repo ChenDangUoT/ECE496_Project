@@ -1,0 +1,90 @@
+# depslib dependency file v1.0
+1521667959 source:c:\users\lvzhe\documents\github\ece496project\base_channel.cpp
+	"base_channel.h"
+
+1521642197 c:\users\lvzhe\documents\github\ece496project\base_channel.h
+	<random>
+	<cmath>
+	<vector>
+	<iostream>
+	"path.h"
+
+1521651935 c:\users\lvzhe\documents\github\ece496project\path.h
+	<cmath>
+	<vector>
+	"subpath.h"
+
+1521651495 c:\users\lvzhe\documents\github\ece496project\subpath.h
+	<cmath>
+	<vector>
+	<iostream>
+
+1519424921 source:c:\users\lvzhe\documents\github\ece496project\channel.cpp
+	"channel.h"
+
+1521640989 c:\users\lvzhe\documents\github\ece496project\channel.h
+	<iostream>
+	<random>
+	<vector>
+	<bitset>
+	"base_channel.h"
+	"urban_macro.h"
+	"suburban_macro.h"
+	"urban_micro.h"
+
+1521667022 c:\users\lvzhe\documents\github\ece496project\urban_macro.h
+	<algorithm>
+	<cmath>
+	<vector>
+	<iostream>
+	"base_channel.h"
+
+1521670683 c:\users\lvzhe\documents\github\ece496project\suburban_macro.h
+	<algorithm>
+	<cmath>
+	<vector>
+	<iostream>
+	"base_channel.h"
+
+1521670736 c:\users\lvzhe\documents\github\ece496project\urban_micro.h
+	<algorithm>
+	<cmath>
+	<vector>
+	<iostream>
+	"base_channel.h"
+
+1521669888 source:c:\users\lvzhe\documents\github\ece496project\main.cpp
+	"main.h"
+
+1521640704 c:\users\lvzhe\documents\github\ece496project\main.h
+	<iostream>
+	<vector>
+	<random>
+	<climits>
+	<complex>
+	"channel.h"
+	"phasor.h"
+	<bitset>
+
+1521635726 c:\users\lvzhe\documents\github\ece496project\phasor.h
+	<iostream>
+	<cmath>
+
+1521668210 source:c:\users\lvzhe\documents\github\ece496project\path.cpp
+	"path.h"
+
+1521635723 source:c:\users\lvzhe\documents\github\ece496project\phasor.cpp
+	"phasor.h"
+
+1521668131 source:c:\users\lvzhe\documents\github\ece496project\subpath.cpp
+	"subpath.h"
+
+1521670683 source:c:\users\lvzhe\documents\github\ece496project\suburban_macro.cpp
+	"suburban_macro.h"
+
+1521670545 source:c:\users\lvzhe\documents\github\ece496project\urban_macro.cpp
+	"urban_macro.h"
+
+1521671021 source:c:\users\lvzhe\documents\github\ece496project\urban_micro.cpp
+	"urban_micro.h"
+

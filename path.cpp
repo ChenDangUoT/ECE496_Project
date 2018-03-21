@@ -1,11 +1,16 @@
 #include "path.h"
 
 path::path(){
-    subpath_base.reserve(20);
+
+    for (int i=0; i<20; i++){
+        subpath* wee=new subpath;
+        subpath_base.push_back(*wee);
+    }
     delta_n_AoD=0;
     delta_n_AoA=0;
     tao_n=0;
     P_n=0;
+
 }
 path::path(const path& temp){
     this->subpath_base=temp.subpath_base;
@@ -13,6 +18,7 @@ path::path(const path& temp){
     this->delta_n_AoA=temp.delta_n_AoA;
     this->tao_n=temp.tao_n;
     this->P_n=temp.P_n;
+
 }
 path::~path(){}
 

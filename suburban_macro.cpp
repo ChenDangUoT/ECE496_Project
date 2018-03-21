@@ -7,6 +7,9 @@ const double PI = std::atan(1) * 4;
 suburban_macro::suburban_macro():base_channel(){
     //left blank
 }
+
+suburban_macro::suburban_macro(const suburban_macro& a):base_channel(a){
+}
 suburban_macro::~suburban_macro(){
     //left blank
 }
@@ -83,18 +86,22 @@ suburban_macro::suburban_macro(double distance, double theta_MS_in, double theta
     for (int i=0; i<6; i++){
         this->path_base[i].set_tao_n(tao[i]);
         this->path_base[i].set_delta_n_AoD(delta_prime_AoD[i]);
+        this->path_base[i].set_P_n(P_n[i]);
     }
 
     //step 8, dig into each path
+    std::uniform_real_distribution<double> phi_generator(0.0, 2*PI);
     for (int n=0; n<6; n++){
         double subpath_P=P_n[n]/20.0;
-        std::uniform_real_distribution<double> angle_generator(0.0, 2*PI);
+
         //set d_n_m_AoD from table 5.2
-        set_d_n_m_AoD_from_table(this->path_base[n]);
+        this->path_base[n].subpath_base.reserve(20);
+
         for (int m=0; m<20; m++){
-                subpath current_subpath=(this->path_base[n].get_subpath_base())[m];
-                current_subpath.set_phi(angle_generator(generator));
+                double bbb=phi_generator(generator);
+                this->path_base[n].subpath_base[m].set_phi(bbb);
         }
+        set_d_n_m_AoD_from_table(this->path_base[n]);
     }
 
     //step 9
@@ -156,54 +163,54 @@ suburban_macro::suburban_macro(double distance, double theta_MS_in, double theta
 
 
 void suburban_macro::set_d_n_m_AoA_from_table(path &this_path){
-    std::vector<subpath> this_subpath_base=this_path.get_subpath_base();
+
     //35 degree offset
-    this_subpath_base[0].set_d_AoA(1.5649/180.0*PI);
-    this_subpath_base[1].set_d_AoA(-1.5649/180.0*PI);
-    this_subpath_base[2].set_d_AoA(4.9447/180.0*PI);
-    this_subpath_base[3].set_d_AoA(-4.9447/180.0*PI);
-    this_subpath_base[4].set_d_AoA(8.7224/180.0*PI);
-    this_subpath_base[5].set_d_AoA(-8.7224/180.0*PI);
-    this_subpath_base[6].set_d_AoA(13.0045/180.0*PI);
-    this_subpath_base[7].set_d_AoA(-13.0045/180.0*PI);
-    this_subpath_base[8].set_d_AoA(17.9492/180.0*PI);
-    this_subpath_base[9].set_d_AoA(-17.9492/180.0*PI);
-    this_subpath_base[10].set_d_AoA(23.7899/180.0*PI);
-    this_subpath_base[11].set_d_AoA(-23.7899/180.0*PI);
-    this_subpath_base[12].set_d_AoA(30.9538/180.0*PI);
-    this_subpath_base[13].set_d_AoA(-30.9538/180.0*PI);
-    this_subpath_base[14].set_d_AoA(40.1824/180.0*PI);
-    this_subpath_base[15].set_d_AoA(-40.1824/180.0*PI);
-    this_subpath_base[16].set_d_AoA(53.1816/180.0*PI);
-    this_subpath_base[17].set_d_AoA(-53.1816/180.0*PI);
-    this_subpath_base[18].set_d_AoA(75.4274/180.0*PI);
-    this_subpath_base[19].set_d_AoA(-75.4274/180.0*PI);
+    (this_path.subpath_base)[0].set_d_AoA(1.5649/180.0*PI);
+    (this_path.subpath_base)[1].set_d_AoA(-1.5649/180.0*PI);
+    (this_path.subpath_base)[2].set_d_AoA(4.9447/180.0*PI);
+    (this_path.subpath_base)[3].set_d_AoA(-4.9447/180.0*PI);
+    (this_path.subpath_base)[4].set_d_AoA(8.7224/180.0*PI);
+    (this_path.subpath_base)[5].set_d_AoA(-8.7224/180.0*PI);
+    (this_path.subpath_base)[6].set_d_AoA(13.0045/180.0*PI);
+    (this_path.subpath_base)[7].set_d_AoA(-13.0045/180.0*PI);
+    (this_path.subpath_base)[8].set_d_AoA(17.9492/180.0*PI);
+    (this_path.subpath_base)[9].set_d_AoA(-17.9492/180.0*PI);
+    (this_path.subpath_base)[10].set_d_AoA(23.7899/180.0*PI);
+    (this_path.subpath_base)[11].set_d_AoA(-23.7899/180.0*PI);
+    (this_path.subpath_base)[12].set_d_AoA(30.9538/180.0*PI);
+    (this_path.subpath_base)[13].set_d_AoA(-30.9538/180.0*PI);
+    (this_path.subpath_base)[14].set_d_AoA(40.1824/180.0*PI);
+    (this_path.subpath_base)[15].set_d_AoA(-40.1824/180.0*PI);
+    (this_path.subpath_base)[16].set_d_AoA(53.1816/180.0*PI);
+    (this_path.subpath_base)[17].set_d_AoA(-53.1816/180.0*PI);
+    (this_path.subpath_base)[18].set_d_AoA(75.4274/180.0*PI);
+    (this_path.subpath_base)[19].set_d_AoA(-75.4274/180.0*PI);
 
 }
 
 void suburban_macro::set_d_n_m_AoD_from_table(path &this_path){
-    std::vector<subpath> this_subpath_base=this_path.get_subpath_base();
+
     //2 degree offset, macro
-    this_subpath_base[0].set_d_AoD(0.0894/180.0*PI);
-    this_subpath_base[1].set_d_AoD(-0.0894/180.0*PI);
-    this_subpath_base[2].set_d_AoD(0.2826/180.0*PI);
-    this_subpath_base[3].set_d_AoD(-0.2826/180.0*PI);
-    this_subpath_base[4].set_d_AoD(0.4987/180.0*PI);
-    this_subpath_base[5].set_d_AoD(-0.4987/180.0*PI);
-    this_subpath_base[6].set_d_AoD(0.7431/180.0*PI);
-    this_subpath_base[7].set_d_AoD(-0.7431/180.0*PI);
-    this_subpath_base[8].set_d_AoD(1.0257/180.0*PI);
-    this_subpath_base[9].set_d_AoD(-1.0257/180.0*PI);
-    this_subpath_base[10].set_d_AoD(1.3594/180.0*PI);
-    this_subpath_base[11].set_d_AoD(-1.3594/180.0*PI);
-    this_subpath_base[12].set_d_AoD(1.7688/180.0*PI);
-    this_subpath_base[13].set_d_AoD(-1.7688/180.0*PI);
-    this_subpath_base[14].set_d_AoD(2.2961/180.0*PI);
-    this_subpath_base[15].set_d_AoD(-2.2961/180.0*PI);
-    this_subpath_base[16].set_d_AoD(3.0389/180.0*PI);
-    this_subpath_base[17].set_d_AoD(-3.0389/180.0*PI);
-    this_subpath_base[18].set_d_AoD(4.3101/180.0*PI);
-    this_subpath_base[19].set_d_AoD(-4.3101/180.0*PI);
+    (this_path.subpath_base)[0].set_d_AoD(0.0894/180.0*PI);
+    (this_path.subpath_base)[1].set_d_AoD(-0.0894/180.0*PI);
+    (this_path.subpath_base)[2].set_d_AoD(0.2826/180.0*PI);
+    (this_path.subpath_base)[3].set_d_AoD(-0.2826/180.0*PI);
+    (this_path.subpath_base)[4].set_d_AoD(0.4987/180.0*PI);
+    (this_path.subpath_base)[5].set_d_AoD(-0.4987/180.0*PI);
+    (this_path.subpath_base)[6].set_d_AoD(0.7431/180.0*PI);
+    (this_path.subpath_base)[7].set_d_AoD(-0.7431/180.0*PI);
+    (this_path.subpath_base)[8].set_d_AoD(1.0257/180.0*PI);
+    (this_path.subpath_base)[9].set_d_AoD(-1.0257/180.0*PI);
+    (this_path.subpath_base)[10].set_d_AoD(1.3594/180.0*PI);
+    (this_path.subpath_base)[11].set_d_AoD(-1.3594/180.0*PI);
+    (this_path.subpath_base)[12].set_d_AoD(1.7688/180.0*PI);
+    (this_path.subpath_base)[13].set_d_AoD(-1.7688/180.0*PI);
+    (this_path.subpath_base)[14].set_d_AoD(2.2961/180.0*PI);
+    (this_path.subpath_base)[15].set_d_AoD(-2.2961/180.0*PI);
+    (this_path.subpath_base)[16].set_d_AoD(3.0389/180.0*PI);
+    (this_path.subpath_base)[17].set_d_AoD(-3.0389/180.0*PI);
+    (this_path.subpath_base)[18].set_d_AoD(4.3101/180.0*PI);
+    (this_path.subpath_base)[19].set_d_AoD(-4.3101/180.0*PI);
 
 }
 

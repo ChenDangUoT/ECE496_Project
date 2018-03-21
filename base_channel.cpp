@@ -10,7 +10,7 @@ bool abssmaller(double i, double j){return ((i*i)<(j*j));}
 
 
 base_channel::base_channel(){
-    //left blank
+    std::cout<<"default called"<<std::endl;
 }
 
 base_channel::base_channel(const base_channel& a){
@@ -25,12 +25,17 @@ base_channel::base_channel(const base_channel& a){
     sigma_AS=a.sigma_AS;
     sigma_SF=a.sigma_SF;
     sigma_DS=a.sigma_DS;
+    std::cout<<"copy called"<<std::endl;
 }
 
 base_channel::base_channel(double distance, double theta_MS_in, double theta_BS_in){
 
     //6 path components per channel
-    path_base.reserve(6);
+
+    for (int i=0; i<6; i++){
+        path* pdd=new path;
+        path_base.push_back(*pdd);
+    }
 
     //now set up the random engine here
     std::random_device channel_seed;

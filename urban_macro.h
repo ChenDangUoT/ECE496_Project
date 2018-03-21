@@ -20,6 +20,8 @@ public:
     //use this constructor
     urban_macro(double distance, double theta_MS_in, double theta_BS_in);
 
+    urban_macro(const urban_macro& a);
+
     ~urban_macro();
 
     void correlation_generator(std::default_random_engine& generator);

@@ -56,7 +56,7 @@ int main(void) {
             else if(input==3)
                 current_channel=new urban_micro(D, theta_MS_in, theta_BS_in);
             else{
-                std::cout<<"Invalid input, channel creation failed, simulation terminated. "<<std::endl;
+
                 return 0;
             }
 
@@ -66,7 +66,10 @@ int main(void) {
 
         for(int tic=0; tic<STEPS; tic++){
             t=tic*(Tm/STEPS);
+
             channel_coefficients_generator(current_channel, t, H, k);
+
+
 
             //then do the operations
 
@@ -123,16 +126,24 @@ void channel_coefficients_generator(base_channel* current_channel, double t, pha
                 for (int m=0; m<M; m++){
                     subpath temp=(current_channel->path_base[n].get_subpath_base())[m];
                     phasor first_part=generate_phasor(1, k*ds*sin(temp.get_theta_AoD())+temp.get_phi());
+
                     phasor second_part=generate_phasor(1, k*du*sin(temp.get_theta_AoA()));
                     phasor third_part=generate_phasor(1, k*current_channel->v*
                                                       cos(temp.get_theta_AoA()-current_channel->theta_v)*t);
                     usnt=usnt+(first_part*second_part*third_part);
+
                 }
+
+                std::cout<<(current_channel->path_base[n].get_P_n())<<std::endl;
+                std::cout<<(current_channel->sigma_SF)<<std::endl;
+                std::cout<<M<<std::endl;
+
 
                 usnt=usnt*sqrt(current_channel->path_base[n].get_P_n()*
                                current_channel->sigma_SF/M);
 
                 H[s][u][n]=usnt;
+                std::cout<<usnt<<std::endl;
             }
         }
     }

@@ -18,6 +18,7 @@ public:
 
     //use this constructor
     suburban_macro(double distance, double theta_MS_in, double theta_BS_in);
+    suburban_macro(const suburban_macro& a);
 
     ~suburban_macro();
 
