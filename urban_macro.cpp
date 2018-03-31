@@ -74,6 +74,7 @@ urban_macro::urban_macro(double distance, double theta_MS_in, double theta_BS_in
     for (int i=0; i<6; i++){
         P_n.push_back(P_prime_n[i]/sumP);
 
+
     }
 
 
@@ -118,7 +119,7 @@ urban_macro::urban_macro(double distance, double theta_MS_in, double theta_BS_in
     //step 9
     std::vector<double> delta_prime_AoA;
     for (int i=0; i<6; i++){
-        double sigma_AoA=104.12*(1-exp(-0.2175*abs(10*log10(P_n[i]))));
+        double sigma_AoA=104.12*(1-exp(-0.2175*abs(10*log10(P_n[i]))))/360*2*PI;
         std::normal_distribution<double> delta_prime_distribution(0.0,sigma_AoA*sigma_AoA);
         delta_prime_AoA.push_back(delta_prime_distribution(generator));
     }
@@ -155,13 +156,19 @@ urban_macro::urban_macro(double distance, double theta_MS_in, double theta_BS_in
     //step 12
     for (int n=0; n<6; n++){
         for (int m=0; m<20; m++){
-            (this->path_base[n].get_subpath_base())[m].set_theta_AoD(theta_BS
-                                                                     +this->path_base[n].get_delta_n_AoD()
-                                                                     +(this->path_base[n].get_subpath_base())[m].get_d_AoD());
+
+
+            double temp=theta_BS+(this->path_base[n].get_delta_n_AoD())+(this->path_base[n].get_subpath_base())[m].get_d_AoD();
+
+
+            (this->path_base[n].get_subpath_base())[m].set_theta_AoD(temp);
 
             (this->path_base[n].get_subpath_base())[m].set_theta_AoA(theta_MS
                                                                      +this->path_base[n].get_delta_n_AoA()
                                                                      +(this->path_base[n].get_subpath_base())[m].get_d_AoA());
+
+
+
 
         }
     }
@@ -252,7 +259,7 @@ void urban_macro::correlation_generator(std::default_random_engine& generator){
     //sigma_AS in rad
     double temp=x_distribution(generator);
     temp=temp*epsilon_AS+mu_AS;
-    sigma_AS=pow(10,temp);
+    sigma_AS=pow(10,temp)/360.0*2*PI;
 
     //sigma_DS in second
     temp=x_distribution(generator);

@@ -6,15 +6,17 @@
 #include "channel.h"
 #include "phasor.h"
 #include <bitset>
+#include <fstream>
 
-#define S 2//BS array element
-#define U 2//MS array element
+
+#define S 8//BS array element
+#define U 8//MS array element
 #define N 6//multi-path component
 #define M 20
 #define f0 2000000000//carrier frequency
 #define D 3000//LOS distance
 #define Tm 0.1//max time
-#define STEPS 100//total steps for the time interval
+#define STEPS 1000//total steps for the time interval
 
 
 // our final destination is to input vector<bool> and output vector<pair<float,float>> which translates the bits to a priori probability
@@ -22,7 +24,7 @@
 using std::vector;
 using std::pair;
 
-void channel_coefficients_generator(base_channel* current_channel, double t, phasor (&H)[S][U][N], double k);
+void channel_coefficients_generator(base_channel* current_channel, double t, phasor (&H)[U][S][N], double k, int tic);
 double G_BS(double theta_AoD);//BS pattern
 double G_MS(double theta_AoA);//MS pattern
 phasor generate_phasor(double magnitude, double angle);

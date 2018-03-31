@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1521667959 source:c:\users\lvzhe\documents\github\ece496project\base_channel.cpp
+1522538901 source:c:\users\lvzhe\documents\github\ece496project\base_channel.cpp
 	"base_channel.h"
 
 1521642197 c:\users\lvzhe\documents\github\ece496project\base_channel.h
@@ -9,12 +9,12 @@
 	<iostream>
 	"path.h"
 
-1521651935 c:\users\lvzhe\documents\github\ece496project\path.h
+1522534461 c:\users\lvzhe\documents\github\ece496project\path.h
 	<cmath>
 	<vector>
 	"subpath.h"
 
-1521651495 c:\users\lvzhe\documents\github\ece496project\subpath.h
+1522492418 c:\users\lvzhe\documents\github\ece496project\subpath.h
 	<cmath>
 	<vector>
 	<iostream>
@@ -53,10 +53,10 @@
 	<iostream>
 	"base_channel.h"
 
-1521669888 source:c:\users\lvzhe\documents\github\ece496project\main.cpp
+1522538430 source:c:\users\lvzhe\documents\github\ece496project\main.cpp
 	"main.h"
 
-1521640704 c:\users\lvzhe\documents\github\ece496project\main.h
+1522538267 c:\users\lvzhe\documents\github\ece496project\main.h
 	<iostream>
 	<vector>
 	<random>
@@ -65,12 +65,13 @@
 	"channel.h"
 	"phasor.h"
 	<bitset>
+	<fstream>
 
 1521635726 c:\users\lvzhe\documents\github\ece496project\phasor.h
 	<iostream>
 	<cmath>
 
-1521668210 source:c:\users\lvzhe\documents\github\ece496project\path.cpp
+1522534461 source:c:\users\lvzhe\documents\github\ece496project\path.cpp
 	"path.h"
 
 1521635723 source:c:\users\lvzhe\documents\github\ece496project\phasor.cpp
@@ -82,7 +83,7 @@
 1521670683 source:c:\users\lvzhe\documents\github\ece496project\suburban_macro.cpp
 	"suburban_macro.h"
 
-1521670545 source:c:\users\lvzhe\documents\github\ece496project\urban_macro.cpp
+1522535650 source:c:\users\lvzhe\documents\github\ece496project\urban_macro.cpp
 	"urban_macro.h"
 
 1521671021 source:c:\users\lvzhe\documents\github\ece496project\urban_micro.cpp
