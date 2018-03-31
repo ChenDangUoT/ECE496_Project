@@ -22,7 +22,7 @@ path::path(const path& temp){
 }
 path::~path(){}
 
-std::vector<subpath> path::get_subpath_base(){return this->subpath_base;}
+std::vector<subpath>& path::get_subpath_base(){return this->subpath_base;}
 double path::get_delta_n_AoD(){return this->delta_n_AoD;}
 double path::get_delta_n_AoA(){return this->delta_n_AoA;}
 double path::get_tao_n(){return this->tao_n;}
