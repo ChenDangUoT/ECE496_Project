@@ -33,7 +33,7 @@ public:
     path(const path& temp);
     ~path();
 
-    std::vector<subpath> get_subpath_base();
+    std::vector<subpath>& get_subpath_base();
     double get_delta_n_AoD();
     double get_delta_n_AoA();
     double get_tao_n();

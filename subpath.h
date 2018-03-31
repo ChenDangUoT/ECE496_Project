@@ -9,9 +9,6 @@
 #include <iostream>
 
 
-
-
-
 class subpath
 {
 public:

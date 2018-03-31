@@ -39,19 +39,19 @@ base_channel::base_channel(double distance, double theta_MS_in, double theta_BS_
 
     //now set up the random engine here
     std::random_device channel_seed;
-	std::default_random_engine generator(channel_seed());
+	std::default_random_engine channel_generator(channel_seed());
 
 	//then setup the random engine for angle and speed.
 	//the speed distribution are to be determined, here we use uniform up to 50 m/s
-	std::uniform_real_distribution<double> angle_generator(0.0, 2*PI);
-	std::uniform_real_distribution<double> speed_generator(0.0, 50.0);
+	std::uniform_real_distribution<double> angle_generator(-0.125*PI, 0.125*PI);
+	std::uniform_real_distribution<double> speed_generator(7.9, 8.1);
 
 	//5.3.1 step 2 and 5.3.2 step 2 here
 	//produce the omega_MS, v, theta_v, then calculate bulk loss
 	this->omega_BS=PI/2;
-	this->omega_MS=angle_generator(generator);
-	this->v=speed_generator(generator);
-	this->theta_v=angle_generator(generator);
+	this->omega_MS=angle_generator(channel_generator);
+	this->v=speed_generator(channel_generator);
+	this->theta_v=angle_generator(channel_generator);
 	this->theta_MS=theta_MS_in;
 	this->theta_BS=theta_BS_in;
 	std::cout<<"theta_BS is "<<this->theta_BS<<std::endl;
